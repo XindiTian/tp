@@ -1,3 +1,49 @@
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/parser/EditCommandParserTest.java
+package seedu.dicitonote.logic.parser;
+
+import static seedu.dicitonote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.dicitonote.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dicitonote.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.dicitonote.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.dicitonote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dicitonote.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.dicitonote.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.dicitonote.commons.core.index.Index;
+import seedu.dicitonote.logic.commands.EditCommand;
+import seedu.dicitonote.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.dicitonote.model.person.Address;
+import seedu.dicitonote.model.person.Email;
+import seedu.dicitonote.model.person.Name;
+import seedu.dicitonote.model.person.Phone;
+import seedu.dicitonote.model.tag.Tag;
+import seedu.dicitonote.testutil.EditPersonDescriptorBuilder;
+=======
 package seedu.dictionote.logic.parser;
 
 import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -34,23 +80,24 @@ import static seedu.dictionote.testutil.TypicalIndexes.INDEX_THIRD_CONTACT;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.logic.commands.EditContactCommand;
-import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dictionote.logic.commands.EditCommand;
+import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Email;
 import seedu.dictionote.model.contact.Name;
 import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
-import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/parser/EditCommandParserTest.java
 
-public class EditContactCommandParserTest {
+public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-        String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditContactCommandParser parser = new EditContactCommandParser();
+    private EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -58,7 +105,7 @@ public class EditContactCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditContactCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -84,7 +131,11 @@ public class EditContactCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/parser/EditCommandParserTest.java
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid dicitonote
+=======
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid dictionote
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/parser/EditCommandParserTest.java
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -111,10 +162,10 @@ public class EditContactCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -124,9 +175,9 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_FIRST_CONTACT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -136,32 +187,36 @@ public class EditContactCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_CONTACT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditContactDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/parser/EditCommandParserTest.java
+        // dicitonote
+=======
         // dictionote
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/parser/EditCommandParserTest.java
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditContactDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditContactDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -172,10 +227,10 @@ public class EditContactCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -185,16 +240,16 @@ public class EditContactCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_CONTACT;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB;
-        descriptor = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
-        expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -203,8 +258,8 @@ public class EditContactCommandParserTest {
         Index targetIndex = INDEX_THIRD_CONTACT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withTags().build();
-        EditContactCommand expectedCommand = new EditContactCommand(targetIndex, descriptor);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

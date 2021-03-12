@@ -36,7 +36,9 @@ public class AddContactCommandTest {
     public void execute_contactAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingContactAdded modelStub = new ModelStubAcceptingContactAdded();
         Contact validContact = new ContactBuilder().build();
+
         CommandResult commandResult = new AddContactCommand(validContact).execute(modelStub);
+
         assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validContact), modelStub.contactsAdded);
     }
@@ -46,6 +48,7 @@ public class AddContactCommandTest {
         Contact validContact = new ContactBuilder().build();
         AddContactCommand addContactCommand = new AddContactCommand(validContact);
         ModelStub modelStub = new ModelStubWithContact(validContact);
+
         assertThrows(CommandException.class,
                 AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
     }
@@ -56,15 +59,20 @@ public class AddContactCommandTest {
         Contact bob = new ContactBuilder().withName("Bob").build();
         AddContactCommand addAliceCommand = new AddContactCommand(alice);
         AddContactCommand addBobCommand = new AddContactCommand(bob);
+
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
+
         // same values -> returns true
         AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+
         // different types -> returns false
         assertFalse(addAliceCommand.equals(1));
+
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
+
         // different contact -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
@@ -134,7 +142,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void setContact(Contact target, Contact editedContact) {
+        public void setPerson(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,6 +187,7 @@ public class AddContactCommandTest {
      */
     private class ModelStubWithContact extends ModelStub {
         private final Contact contact;
+
         ModelStubWithContact(Contact contact) {
             requireNonNull(contact);
             this.contact = contact;
@@ -196,6 +205,7 @@ public class AddContactCommandTest {
      */
     private class ModelStubAcceptingContactAdded extends ModelStub {
         final ArrayList<Contact> contactsAdded = new ArrayList<>();
+
         @Override
         public boolean hasContact(Contact contact) {
             requireNonNull(contact);
@@ -213,4 +223,5 @@ public class AddContactCommandTest {
             return new AddressBook();
         }
     }
+
 }

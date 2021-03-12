@@ -35,7 +35,9 @@ public class AddNoteCommandTest {
     public void execute_noteAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingNoteAdded modelStub = new ModelStubAcceptingNoteAdded();
         Note validNote = new NoteBuilder().build();
+
         CommandResult commandResult = new AddNoteCommand(validNote).execute(modelStub);
+
         assertEquals(Arrays.asList(validNote), modelStub.noteAdded);
     }
 
@@ -45,15 +47,20 @@ public class AddNoteCommandTest {
         Note otherNote = new NoteBuilder(new Note("cs2103T")).build();
         AddNoteCommand addNoteCommand = new AddNoteCommand(note);
         AddNoteCommand addOtherNoteCommand = new AddNoteCommand(otherNote);
+
         // same object -> returns true
         assertTrue(addNoteCommand.equals(addNoteCommand));
+
         // same values -> returns true
         AddNoteCommand addNoteCommandCopy = new AddNoteCommand(note);
         assertTrue(addNoteCommand.equals(addNoteCommandCopy));
+
         // different types -> returns false
         assertFalse(addNoteCommand.equals(1));
+
         // null -> returns false
         assertFalse(addNoteCommand.equals(null));
+
         // different person -> returns false
         assertFalse(addNoteCommand.equals(addOtherNoteCommand));
     }
@@ -123,7 +130,7 @@ public class AddNoteCommandTest {
         }
 
         @Override
-        public void setContact(Contact target, Contact editedContact) {
+        public void setPerson(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -168,6 +175,7 @@ public class AddNoteCommandTest {
      */
     private class ModelStubWithNote extends ModelStub {
         private final Note note;
+
         ModelStubWithNote(Note note) {
             requireNonNull(note);
             this.note = note;
@@ -203,4 +211,5 @@ public class AddNoteCommandTest {
             return new NoteBook();
         }
     }
+
 }

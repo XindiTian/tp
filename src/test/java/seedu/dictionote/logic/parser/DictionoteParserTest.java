@@ -20,8 +20,8 @@ import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
 import seedu.dictionote.logic.commands.DeleteContactCommand;
-import seedu.dictionote.logic.commands.EditContactCommand;
-import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dictionote.logic.commands.EditCommand;
+import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
@@ -32,19 +32,20 @@ import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
-import seedu.dictionote.testutil.ContactUtil;
-import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.NoteUtil;
+import seedu.dictionote.testutil.PersonUtil;
 
 
 
 public class DictionoteParserTest {
+
     private final DictionoteParser parser = new DictionoteParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Contact contact = new ContactBuilder().build();
-        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
         assertEquals(new AddContactCommand(contact), command);
     }
 
@@ -64,17 +65,17 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
-                DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
+            DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_CONTACT.getOneBased());
         assertEquals(new DeleteContactCommand(INDEX_FIRST_CONTACT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
-        EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CONTACT.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
-        assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+            + INDEX_FIRST_CONTACT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 
     @Test
@@ -87,7 +88,7 @@ public class DictionoteParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -107,7 +108,7 @@ public class DictionoteParserTest {
     public void parseCommand_open() throws Exception {
         for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
             OpenCommand command = (OpenCommand) parser.parseCommand(
-                    OpenCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
+                OpenCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
             assertEquals(new OpenCommand(EXPECTED_UI_OPTION[i]), command);
         }
     }
@@ -116,15 +117,16 @@ public class DictionoteParserTest {
     public void parseCommand_close() throws Exception {
         for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
             CloseCommand command = (CloseCommand) parser.parseCommand(
-                    CloseCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
+                CloseCommand.COMMAND_WORD + " " + VALID_UI_OPTIONS[i]);
             assertEquals(new CloseCommand(EXPECTED_UI_OPTION[i]), command);
         }
     }
 
+
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+            -> parser.parseCommand(""));
     }
 
     @Test

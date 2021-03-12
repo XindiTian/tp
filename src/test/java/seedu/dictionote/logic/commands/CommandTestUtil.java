@@ -1,3 +1,15 @@
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
+package seedu.dicitonote.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.dicitonote.testutil.Assert.assertThrows;
+=======
 package seedu.dictionote.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,18 +20,29 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.testutil.Assert.assertThrows;
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/commands/CommandTestUtil.java
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
+import seedu.dicitonote.commons.core.index.Index;
+import seedu.dicitonote.logic.commands.exceptions.CommandException;
+import seedu.dicitonote.model.AddressBook;
+import seedu.dicitonote.model.Model;
+import seedu.dicitonote.model.person.NameContainsKeywordsPredicate;
+import seedu.dicitonote.model.person.Person;
+import seedu.dicitonote.testutil.EditPersonDescriptorBuilder;
+=======
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
-import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/commands/CommandTestUtil.java
 
 /**
  * Contains helper methods for testing commands.
@@ -37,6 +60,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_NOTE_CONTENT = "My love, I have been waiting for you";
+
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,14 +83,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NOTE = "c/";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditContactCommand.EditContactDescriptor DESC_AMY;
-    public static final EditContactCommand.EditContactDescriptor DESC_BOB;
+    public static final EditCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -77,7 +101,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -92,7 +116,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
+            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -101,27 +125,39 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
+     * - the dicitonote book, filtered person list and selected person in {@code actualModel} remain unchanged
+=======
      * - the dictionote book, filtered person list and selected person in {@code actualModel} remain unchanged
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/commands/CommandTestUtil.java
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Contact> expectedFilteredList = new ArrayList<>(actualModel.getFilteredContactList());
+
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredContactList());
     }
-
     /**
+<<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s dicitonote book.
+=======
      * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
      * {@code model}'s dictionote book.
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/commands/CommandTestUtil.java
      */
     public static void showContactAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
+
         Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
         final String[] splitName = contact.getName().fullName.split("\\s+");
         model.updateFilteredContactList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
         assertEquals(1, model.getFilteredContactList().size());
     }
+
 }
