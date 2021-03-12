@@ -18,17 +18,13 @@ import seedu.dictionote.logic.LogicManager;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
-import seedu.dictionote.model.NoteBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.ReadOnlyNoteBook;
 import seedu.dictionote.model.ReadOnlyUserPrefs;
 import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.util.SampleDataUtil;
 import seedu.dictionote.storage.AddressBookStorage;
 import seedu.dictionote.storage.JsonAddressBookStorage;
-import seedu.dictionote.storage.JsonNoteBookStorage;
 import seedu.dictionote.storage.JsonUserPrefsStorage;
-import seedu.dictionote.storage.NoteBookStorage;
 import seedu.dictionote.storage.Storage;
 import seedu.dictionote.storage.StorageManager;
 import seedu.dictionote.storage.UserPrefsStorage;
@@ -53,7 +49,6 @@ public class MainApp extends Application {
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
-        logger.info("=============================[ Initializing NoteBook ]==============================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -62,8 +57,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        NoteBookStorage noteBookStorage = new JsonNoteBookStorage(userPrefs.getNoteBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, noteBookStorage);
+        storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -81,39 +75,22 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialDataAddress;
-        Optional<ReadOnlyNoteBook> noteBookOptional;
-        ReadOnlyNoteBook initialDataNote;
-
+        ReadOnlyAddressBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialDataAddress = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialDataAddress = new AddressBook();
+            initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialDataAddress = new AddressBook();
+            initialData = new AddressBook();
         }
 
-        try {
-            noteBookOptional = storage.readNoteBook();
-            if (!noteBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample NoteBook");
-            }
-            initialDataNote = noteBookOptional.orElseGet(SampleDataUtil::getSampleNoteBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialDataNote = new NoteBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialDataNote = new NoteBook();
-        }
-
-        return new ModelManager(initialDataAddress, userPrefs, initialDataNote);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

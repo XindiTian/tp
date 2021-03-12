@@ -9,16 +9,16 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
-import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Person;
 
 /**
- * Adds a contact to the contacts list.
+ * Adds a contact to the dictionote book.
  */
 public class AddContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "addcontact";
+    public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to the contacts list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to the dictionote book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,27 +34,27 @@ public class AddContactCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contacts list.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This contact already exists in the dictionote book";
 
-    private final Contact toAdd;
+    private final Person toAdd;
 
     /**
-     * Creates an AddContactCommand to add the specified {@code Contact}
+     * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddContactCommand(Contact contact) {
-        requireNonNull(contact);
-        toAdd = contact;
+    public AddContactCommand(Person person) {
+        requireNonNull(person);
+        toAdd = person;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasContact(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addContact(toAdd);
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

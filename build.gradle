@@ -6,7 +6,8 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.dictionote.Main'
+
+mainClassName = 'seedu.dicitonote.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11

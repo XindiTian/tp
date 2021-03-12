@@ -8,74 +8,74 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.dictionote.model.contact.exceptions.ContactNotFoundException;
-import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
+import seedu.dictionote.model.contact.exceptions.DuplicatePersonException;
+import seedu.dictionote.model.contact.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A contact is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the contact being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a contact uses Person#equals(Object) so
+ * as to ensure that the contact with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Contact#isSameContact(Contact)
+ * @see Person#isSamePerson(Person)
  */
-public class UniquePersonList implements Iterable<Contact> {
+public class UniquePersonList implements Iterable<Person> {
 
-    private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Contact> internalUnmodifiableList =
+    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent contact as the given argument.
      */
-    public boolean contains(Contact toCheck) {
+    public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameContact);
+        return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a contact to the list.
+     * The contact must not already exist in the list.
      */
-    public void add(Contact toAdd) {
+    public void add(Person toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateContactException();
+            throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the contact {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The contact identity of {@code editedPerson} must not be the same as another existing contact in the list.
      */
-    public void setPerson(Contact target, Contact editedContact) {
-        requireAllNonNull(target, editedContact);
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ContactNotFoundException();
+            throw new PersonNotFoundException();
         }
 
-        if (!target.isSameContact(editedContact) && contains(editedContact)) {
-            throw new DuplicateContactException();
+        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+            throw new DuplicatePersonException();
         }
 
-        internalList.set(index, editedContact);
+        internalList.set(index, editedPerson);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent contact from the list.
+     * The contact must exist in the list.
      */
-    public void remove(Contact toRemove) {
+    public void remove(Person toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ContactNotFoundException();
+            throw new PersonNotFoundException();
         }
     }
 
@@ -88,24 +88,24 @@ public class UniquePersonList implements Iterable<Contact> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Contact> contacts) {
-        requireAllNonNull(contacts);
-        if (!personsAreUnique(contacts)) {
-            throw new DuplicateContactException();
+    public void setPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
+            throw new DuplicatePersonException();
         }
 
-        internalList.setAll(contacts);
+        internalList.setAll(persons);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Contact> asUnmodifiableObservableList() {
+    public ObservableList<Person> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Contact> iterator() {
+    public Iterator<Person> iterator() {
         return internalList.iterator();
     }
 
@@ -124,10 +124,10 @@ public class UniquePersonList implements Iterable<Contact> {
     /**
      * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean personsAreUnique(List<Contact> contacts) {
-        for (int i = 0; i < contacts.size() - 1; i++) {
-            for (int j = i + 1; j < contacts.size(); j++) {
-                if (contacts.get(i).isSameContact(contacts.get(j))) {
+    private boolean personsAreUnique(List<Person> persons) {
+        for (int i = 0; i < persons.size() - 1; i++) {
+            for (int j = i + 1; j < persons.size(); j++) {
+                if (persons.get(i).isSamePerson(persons.get(j))) {
                     return false;
                 }
             }

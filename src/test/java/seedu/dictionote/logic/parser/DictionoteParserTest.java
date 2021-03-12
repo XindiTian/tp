@@ -15,26 +15,20 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.logic.commands.AddContactCommand;
+import seedu.dictionote.logic.commands.*;
 import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
-import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
-import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
-import seedu.dictionote.logic.commands.HelpCommand;
-import seedu.dictionote.logic.commands.ListCommand;
+import seedu.dictionote.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.NameContainsKeywordsPredicate;
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
-import seedu.dictionote.testutil.ContactUtil;
-import seedu.dictionote.testutil.EditContactDescriptorBuilder;
+import seedu.dictionote.testutil.EditPersonDescriptorBuilder;
 import seedu.dictionote.testutil.NoteUtil;
+import seedu.dictionote.testutil.PersonUtil;
 
 
 
@@ -45,7 +39,7 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Contact contact = new ContactBuilder().build();
-        AddContactCommand command = (AddContactCommand) parser.parseCommand(ContactUtil.getAddCommand(contact));
+        AddContactCommand command = (AddContactCommand) parser.parseCommand(PersonUtil.getAddCommand(contact));
         assertEquals(new AddContactCommand(contact), command);
     }
 
@@ -72,9 +66,9 @@ public class DictionoteParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
-        EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
         EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_CONTACT.getOneBased() + " " + ContactUtil.getEditContactDescriptorDetails(descriptor));
+            + INDEX_FIRST_CONTACT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 

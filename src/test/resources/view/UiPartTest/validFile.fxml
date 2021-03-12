@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
+<?import seedu.dicitonote.ui.TestFxmlObject?>
+=======
 <?import seedu.dictionote.ui.TestFxmlObject?>
+>>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc
 <TestFxmlObject xmlns:fx="http://javafx.com/fxml/1" fx:id="validFileRoot">Hello World!</TestFxmlObject>

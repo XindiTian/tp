@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,7 +19,7 @@ import seedu.dictionote.model.contact.Contact;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate contact(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getContactList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,11 +48,11 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Contact contact = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasContact(contact)) {
+            Person person = jsonAdaptedPerson.toModelType();
+            if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addContact(contact);
+            addressBook.addPerson(person);
         }
         return addressBook;
     }

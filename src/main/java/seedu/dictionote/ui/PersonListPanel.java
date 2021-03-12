@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.dictionote.commons.core.LogsCenter;
-import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.contact.Person;
 
 /**
  * Panel containing the list of persons.
@@ -18,30 +18,30 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Contact> personListView;
+    private ListView<Person> personListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Contact> contactList) {
+    public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(contactList);
+        personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Contact> {
+    class PersonListViewCell extends ListCell<Person> {
         @Override
-        protected void updateItem(Contact contact, boolean empty) {
-            super.updateItem(contact, empty);
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
 
-            if (empty || contact == null) {
+            if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(contact, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
     }

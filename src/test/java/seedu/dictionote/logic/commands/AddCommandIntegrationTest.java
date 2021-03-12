@@ -17,7 +17,7 @@ import seedu.dictionote.testutil.ContactBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddContactCommandIntegrationTest {
 
     private Model model;
 

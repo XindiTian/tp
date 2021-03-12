@@ -15,7 +15,7 @@ import seedu.dictionote.model.contact.exceptions.DuplicateContactException;
  * A note is considered unique by comparing using {@code Note#isSameNote(Note)}. As such, adding and updating of
  * notes uses Note#isSameNote(Note) for equality so as to ensure that the note being added or updated is
  * unique in terms of identity in the UniqueNoteList. However, the removal of a note uses Note#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * as to ensure that the contact with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

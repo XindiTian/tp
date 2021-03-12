@@ -15,8 +15,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private Path noteBookFilePath = Paths.get("data" , "notebook.json");
-    private final String localPath = "\nLocal data file location : ";
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,7 +36,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-        setNoteBookFilePath(newUserPrefs.getNoteBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -59,15 +56,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-    public Path getNoteBookFilePath() {
-        return noteBookFilePath;
-    }
-
-    public void setNoteBookFilePath(Path noteBookFilePath) {
-        requireNonNull(noteBookFilePath);
-        this.noteBookFilePath = noteBookFilePath;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -80,21 +68,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
-                && noteBookFilePath.equals(o.noteBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, noteBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append(localPath + addressBookFilePath);
-        sb.append(localPath + noteBookFilePath);
+        sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }
 

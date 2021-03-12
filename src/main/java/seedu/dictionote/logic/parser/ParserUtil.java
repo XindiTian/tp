@@ -8,7 +8,6 @@ import java.util.Set;
 
 import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.commons.util.StringUtil;
-import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Email;
@@ -72,7 +71,6 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dictionote} is invalid.
      */
-
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
@@ -122,31 +120,5 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String noteContent} into a {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code note} is invalid.
-     */
-    public static String parseNote(String noteContent) throws ParseException {
-        requireNonNull(noteContent);
-        String trimmedName = noteContent.trim();
-        return trimmedName;
-    }
-
-    /** Parses a {@code String option} into a {@code UiOptionAction}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code option} is invalid.
-     */
-    public static UiActionOption parseUiActionOption(String option) throws ParseException {
-        requireNonNull(option);
-        String trimmedOption = option.trim();
-        if (!UiActionOption.isValidOption(trimmedOption)) {
-            throw new ParseException(UiActionOption.MESSAGE_CONSTRAINTS);
-        }
-        return UiActionOption.getUiActionOption(trimmedOption);
     }
 }

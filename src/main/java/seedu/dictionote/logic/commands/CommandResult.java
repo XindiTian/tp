@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.dictionote.logic.commands.enums.UiAction;
-import seedu.dictionote.logic.commands.enums.UiActionOption;
-
 /**
  * Represents the result of a command execution.
  */
@@ -14,20 +11,19 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** The action UI should take.*/
-    private final UiAction uiAction;
+    /** Help information should be shown to the user. */
+    private final boolean showHelp;
 
-
-    /** The option of the action UI.*/
-    private final UiActionOption uiActionOption;
+    /** The application should exit. */
+    private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, UiAction uiAction, UiActionOption uiActionOption) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.uiAction = uiAction;
-        this.uiActionOption = uiActionOption;
+        this.showHelp = showHelp;
+        this.exit = exit;
     }
 
     /**
@@ -35,28 +31,19 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, UiAction.NONE, UiActionOption.NONE);
-    }
-
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}. {@code UiAction},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser, UiAction uiAction) {
-        this(feedbackToUser, uiAction, UiActionOption.NONE);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
-    public UiAction getUiAction() {
-        return uiAction;
+    public boolean isShowHelp() {
+        return showHelp;
     }
 
-    public UiActionOption getUiActionOption() {
-        return uiActionOption;
+    public boolean isExit() {
+        return exit;
     }
 
     @Override
@@ -72,13 +59,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && uiAction == otherCommandResult.uiAction
-                && uiActionOption == otherCommandResult.uiActionOption;
+                && showHelp == otherCommandResult.showHelp
+                && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, uiAction, uiActionOption);
+        return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
 }
