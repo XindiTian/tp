@@ -1,19 +1,4 @@
-<<<<<<< HEAD:src/test/java/seedu/dicitonote/testutil/PersonUtil.java
-package seedu.dicitonote.testutil;
 
-import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.dicitonote.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
-
-import seedu.dicitonote.logic.commands.AddCommand;
-import seedu.dicitonote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dicitonote.model.person.Person;
-import seedu.dicitonote.model.tag.Tag;
-=======
 package seedu.dictionote.testutil;
 
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -25,27 +10,26 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.dictionote.logic.commands.AddContactCommand;
-import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.tag.Tag;
->>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/testutil/PersonUtil.java
 
 /**
- * A utility class for Person.
+ * A utility class for Contact.
  */
-public class PersonUtil {
+public class ContactUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code contact}.
      */
     public static String getAddCommand(Contact contact) {
-        return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(contact);
+        return AddContactCommand.COMMAND_WORD + " " + getContactDetails(contact);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code contact}'s details.
      */
-    public static String getPersonDetails(Contact contact) {
+    public static String getContactDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + contact.getName().fullName + " ");
         sb.append(PREFIX_PHONE + contact.getPhone().value + " ");
@@ -58,9 +42,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditContactDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditContactDescriptorDetails(EditContactDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

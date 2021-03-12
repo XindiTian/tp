@@ -5,6 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.dictionote.logic.commands.EditContactCommand.EditContactDescriptor;
+import seedu.dicitonote.model.person.Address;
+import seedu.dicitonote.model.person.Email;
+import seedu.dicitonote.model.person.Name;
+import seedu.dicitonote.model.person.Person;
+import seedu.dicitonote.model.person.Phone;
+import seedu.dicitonote.model.tag.Tag;
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.contact.Email;
@@ -38,6 +44,7 @@ public class EditContactDescriptorBuilder {
         descriptor.setAddress(contact.getAddress());
         descriptor.setTags(contact.getTags());
     }
+
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -84,3 +91,4 @@ public class EditContactDescriptorBuilder {
         return descriptor;
     }
 }
+

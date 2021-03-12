@@ -148,8 +148,8 @@ public class EditContactCommandParserTest {
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        descriptor = new EditContactDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        expectedCommand = new EditContactCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // dictionote

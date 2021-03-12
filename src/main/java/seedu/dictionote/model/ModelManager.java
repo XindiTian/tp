@@ -138,6 +138,7 @@ public class ModelManager implements Model {
         updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
+    @Override
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
         addressBook.setContact(target, editedContact);
