@@ -11,7 +11,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the dicitonote book.
+ * Deletes a person identified using it's displayed index from the dictionote book.
  */
 public class DeleteCommand extends Command {
 

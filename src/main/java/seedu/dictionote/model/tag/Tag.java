@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the dicitonote book.
+ * Represents a Tag in the dictionote book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {

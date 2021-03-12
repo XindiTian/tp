@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's dicitonote in the dicitonote book.
+ * Represents a Person's dictionote in the dictionote book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
@@ -12,7 +12,7 @@ public class Address {
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
-     * The first character of the dicitonote must not be a whitespace,
+     * The first character of the dictionote must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -22,7 +22,7 @@ public class Address {
     /**
      * Constructs an {@code Address}.
      *
-     * @param address A valid dicitonote.
+     * @param address A valid dictionote.
      */
     public Address(String address) {
         requireNonNull(address);

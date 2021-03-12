@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.dictionote.model.tag.Tag;
 
 /**
- * Represents a Person in the dicitonote book.
+ * Represents a Person in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {

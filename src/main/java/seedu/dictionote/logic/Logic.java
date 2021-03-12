@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.dicitonote.model.Model#getAddressBook()
+     * @see seedu.dictionote.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' dicitonote book file path.
+     * Returns the user prefs' dictionote book file path.
      */
     Path getAddressBookFilePath();
 

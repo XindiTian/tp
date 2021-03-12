@@ -6,7 +6,7 @@ import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.Model;
 
 /**
- * Clears the dicitonote book.
+ * Clears the dictionote book.
  */
 public class ClearCommand extends Command {
 

@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s dicitonote book and {@code userPrefs}. <br>
-     * The data from the sample dicitonote book will be used instead if {@code storage}'s dicitonote book is not found,
-     * or an empty dicitonote book will be used instead if errors occur when reading {@code storage}'s dicitonote book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s dictionote book and {@code userPrefs}. <br>
+     * The data from the sample dictionote book will be used instead if {@code storage}'s dictionote book is not found,
+     * or an empty dictionote book will be used instead if errors occur when reading {@code storage}'s dictionote book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;

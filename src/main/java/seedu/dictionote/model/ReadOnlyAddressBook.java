@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.dictionote.model.person.Person;
 
 /**
- * Unmodifiable view of an dicitonote book
+ * Unmodifiable view of an dictionote book
  */
 public interface ReadOnlyAddressBook {
 

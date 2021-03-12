@@ -8,7 +8,7 @@ import seedu.dictionote.commons.exceptions.DataConversionException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
 
 /**
- * Represents a storage for {@link seedu.dicitonote.model.AddressBook}.
+ * Represents a storage for {@link seedu.dictionote.model.AddressBook}.
  */
 public interface AddressBookStorage {
 

@@ -6,7 +6,7 @@ import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.dictionote.model.Model;
 
 /**
- * Lists all persons in the dicitonote book to the user.
+ * Lists all persons in the dictionote book to the user.
  */
 public class ListCommand extends Command {
 

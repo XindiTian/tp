@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the dicitonote book.
+ * Represents a Person's email in the dictionote book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -32,7 +32,7 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid email dicitonote.
+     * @param email A valid email dictionote.
      */
     public Email(String email) {
         requireNonNull(email);

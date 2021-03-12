@@ -66,10 +66,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dicitonote} into an {@code Address}.
+     * Parses a {@code String dictionote} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dicitonote} is invalid.
+     * @throws ParseException if the given {@code dictionote} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);

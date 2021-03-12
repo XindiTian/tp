@@ -14,7 +14,7 @@ import seedu.dictionote.commons.core.LogsCenter;
 import seedu.dictionote.model.person.Person;
 
 /**
- * Represents the in-memory model of the dicitonote book data.
+ * Represents the in-memory model of the dictionote book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with dicitonote book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with dictionote book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
