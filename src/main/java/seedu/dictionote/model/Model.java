@@ -64,6 +64,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given note.
+     * The note must exist in the dictionote book.
+     */
+    void deleteNote(Note target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the dictionote book.
      */
@@ -84,5 +90,13 @@ public interface Model {
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredContactList(Predicate<Contact> predicate);
+
+    /**
+     * Updates the filter of the filtered note list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredNoteList(Predicate<Note> predicate);
+
 }

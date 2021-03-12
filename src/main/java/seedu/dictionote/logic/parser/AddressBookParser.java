@@ -9,8 +9,9 @@ import java.util.regex.Pattern;
 import seedu.dictionote.logic.commands.AddCommand;
 import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.Command;
-import seedu.dictionote.logic.commands.DeleteCommand;
-import seedu.dictionote.logic.commands.EditCommand;
+import seedu.dictionote.logic.commands.DeleteContactCommand;
+import seedu.dictionote.logic.commands.DeleteNoteCommand;
+import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.ExitCommand;
 import seedu.dictionote.logic.commands.FindCommand;
 import seedu.dictionote.logic.commands.HelpCommand;
@@ -52,6 +53,9 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

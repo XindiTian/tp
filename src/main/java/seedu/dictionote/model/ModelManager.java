@@ -76,6 +76,42 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getNoteBookFilePath() {
+        return userPrefs.getNoteBookFilePath();
+    }
+
+    @Override
+    public void setNoteBookFilePath(Path noteBookFilePath) {
+        requireNonNull(noteBookFilePath);
+        userPrefs.setAddressBookFilePath(noteBookFilePath);
+    }
+
+    //=========== NoteBook ===================================================================================
+    @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return noteBook.hasNote(note);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        noteBook.addNote(note);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public void deleteNote(Note note) {
+        noteBook.deleteNote(note);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public ReadOnlyNoteBook getNoteBook() {
+        return noteBook;
+    }
+
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -106,16 +142,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-<<<<<<< HEAD
-    public void setContact(Contact target, Contact editedContact) {
-        requireAllNonNull(target, editedContact);
-        addressBook.setContact(target, editedContact);
-=======
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
->>>>>>> parent of 9f01435e (Resolving merge conflicts)
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -133,6 +163,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNote.setPredicate(predicate);
     }
 
     @Override
