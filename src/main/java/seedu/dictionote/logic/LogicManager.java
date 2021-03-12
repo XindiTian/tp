@@ -7,14 +7,16 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import seedu.dictionote.commons.core.GuiSettings;
 import seedu.dictionote.commons.core.LogsCenter;
+import seedu.dictionote.logic.commands.AddNoteCommand;
 import seedu.dictionote.logic.commands.Command;
 import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.logic.parser.AddressBookParser;
+import seedu.dictionote.logic.parser.DictionoteParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Contact;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.storage.Storage;
 
 /**
@@ -26,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final DictionoteParser dictionoteParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        dictionoteParser = new DictionoteParser();
     }
 
     @Override
@@ -42,11 +44,14 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = dictionoteParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            if (command instanceof AddNoteCommand) {
+                storage.saveNoteBook(model.getNoteBook());
+            } else {
+                storage.saveAddressBook(model.getAddressBook());
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,8 +65,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Contact> getFilteredContactList() {
+        return model.getFilteredContactList();
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return model.getFilteredNoteList();
     }
 
     @Override

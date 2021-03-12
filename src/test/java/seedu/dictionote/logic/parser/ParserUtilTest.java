@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.dictionote.testutil.Assert.assertThrows;
-import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
+import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
+import static seedu.dictionote.testutil.TypicalUiActions.VALID_UI_OPTIONS;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,10 +16,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.logic.parser.exceptions.ParseException;
-import seedu.dictionote.model.person.Address;
-import seedu.dictionote.model.person.Email;
-import seedu.dictionote.model.person.Name;
-import seedu.dictionote.model.person.Phone;
+import seedu.dictionote.model.contact.Address;
+import seedu.dictionote.model.contact.Email;
+import seedu.dictionote.model.contact.Name;
+import seedu.dictionote.model.contact.Phone;
 import seedu.dictionote.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_UI_OPTION = "0123";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -50,10 +53,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_CONTACT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_CONTACT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -193,4 +196,30 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseUiActionOption_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUiActionOption(null));
+    }
+
+    @Test
+    public void parseUiActionOption_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseUiActionOption(INVALID_UI_OPTION));
+    }
+
+    @Test
+    public void parseUiActionOption_validValueWithoutWhitespace_returnsTag() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            assertEquals(EXPECTED_UI_OPTION[i], ParserUtil.parseUiActionOption(VALID_UI_OPTIONS[i]));
+        }
+    }
+
+    @Test
+    public void parseUiActionOption_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        for (int i = 0; i < VALID_UI_OPTIONS.length; i++) {
+            String optionWithWhitespace = WHITESPACE + VALID_UI_OPTIONS[i] + WHITESPACE;
+            assertEquals(EXPECTED_UI_OPTION[i], ParserUtil.parseUiActionOption(optionWithWhitespace));
+        }
+    }
+
 }
