@@ -13,25 +13,26 @@ import seedu.dictionote.model.tag.Tag;
  * Represents a Person in the dictionote book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Contact {
+public class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Address address;
+
     // Data fields
+    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.address = address;
         this.email = email;
+        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -63,13 +64,13 @@ public class Contact {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSameContact(Contact otherContact) {
-        if (otherContact == this) {
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherContact != null
-                && otherContact.getName().equals(getName());
+        return otherPerson != null
+                && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -82,16 +83,16 @@ public class Contact {
             return true;
         }
 
-        if (!(other instanceof Contact)) {
+        if (!(other instanceof Person)) {
             return false;
         }
 
-        Contact otherContact = (Contact) other;
-        return otherContact.getName().equals(getName())
-                && otherContact.getPhone().equals(getPhone())
-                && otherContact.getEmail().equals(getEmail())
-                && otherContact.getAddress().equals(getAddress())
-                && otherContact.getTags().equals(getTags());
+        Person otherPerson = (Person) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -110,7 +111,6 @@ public class Contact {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
-
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
