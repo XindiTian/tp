@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.dictionote.commons.exceptions.IllegalValueException;
 import seedu.dictionote.model.AddressBook;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Person;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,7 +19,7 @@ import seedu.dictionote.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate contact(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 

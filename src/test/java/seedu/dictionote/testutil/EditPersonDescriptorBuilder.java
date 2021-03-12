@@ -23,7 +23,7 @@ import seedu.dicitonote.model.tag.Tag;
 <<<<<<< HEAD:src/test/java/seedu/dictionote/testutil/EditContactDescriptorBuilder.java
 =======
 =======
-import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.dictionote.logic.commands.EditContactCommand.EditPersonDescriptor;
 >>>>>>> parent of 9f01435e (Resolving merge conflicts):src/test/java/seedu/dictionote/testutil/EditPersonDescriptorBuilder.java
 import seedu.dictionote.model.contact.Address;
 import seedu.dictionote.model.contact.Contact;
@@ -49,7 +49,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code contact}'s details
      */
     public EditPersonDescriptorBuilder(Contact contact) {
         descriptor = new EditPersonDescriptor();

@@ -20,9 +20,9 @@ import seedu.dicitonote.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteContactCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteContactCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -94,7 +94,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

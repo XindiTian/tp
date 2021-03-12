@@ -14,7 +14,7 @@ import seedu.dictionote.logic.parser.AddressBookParser;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Person;
 import seedu.dictionote.storage.Storage;
 
 /**

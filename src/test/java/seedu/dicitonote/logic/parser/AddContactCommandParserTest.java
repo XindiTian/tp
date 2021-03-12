@@ -40,7 +40,7 @@ import seedu.dicitonote.model.person.Phone;
 import seedu.dicitonote.model.tag.Tag;
 import seedu.dicitonote.testutil.PersonBuilder;
 
-public class AddCommandParserTest {
+public class AddContactCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test

@@ -6,16 +6,9 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.dictionote.logic.commands.AddCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
-import seedu.dictionote.logic.commands.Command;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
-import seedu.dictionote.logic.commands.DeleteNoteCommand;
+import seedu.dictionote.logic.commands.*;
+import seedu.dictionote.logic.commands.AddContactCommand;
 import seedu.dictionote.logic.commands.EditContactCommand;
-import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
-import seedu.dictionote.logic.commands.HelpCommand;
-import seedu.dictionote.logic.commands.ListCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,13 +38,13 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddContactCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EditContactCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteContactCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
         case DeleteNoteCommand.COMMAND_WORD:

@@ -22,10 +22,8 @@ import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
 import seedu.dictionote.logic.commands.AddContactCommand;
-import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.dictionote.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.dictionote.model.contact.Contact;
 import seedu.dictionote.model.tag.Tag;
 >>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/testutil/PersonUtil.java
@@ -36,14 +34,14 @@ import seedu.dictionote.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code contact}.
      */
     public static String getAddCommand(Contact contact) {
         return AddContactCommand.COMMAND_WORD + " " + getPersonDetails(contact);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code contact}'s details.
      */
     public static String getPersonDetails(Contact contact) {
         StringBuilder sb = new StringBuilder();

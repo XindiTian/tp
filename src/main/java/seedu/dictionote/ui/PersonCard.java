@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Person;
 
 /**
  * An UI component that displays information of a {@code Person}.

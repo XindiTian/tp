@@ -21,7 +21,7 @@ import seedu.dictionote.model.contact.Contact;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteContactCommand}.
  */
 public class DeleteContactCommandTest {
 

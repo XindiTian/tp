@@ -8,7 +8,7 @@ import seedu.dictionote.logic.commands.CommandResult;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.ReadOnlyAddressBook;
-import seedu.dictionote.model.person.Person;
+import seedu.dictionote.model.contact.Person;
 
 /**
  * API of the Logic component

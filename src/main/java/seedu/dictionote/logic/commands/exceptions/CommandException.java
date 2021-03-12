@@ -1,5 +1,7 @@
 package seedu.dictionote.logic.commands.exceptions;
 
+import seedu.dictionote.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

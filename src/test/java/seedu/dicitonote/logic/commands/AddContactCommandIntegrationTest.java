@@ -16,7 +16,7 @@ import seedu.dicitonote.testutil.PersonBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddContactCommandIntegrationTest {
 
     private Model model;
 

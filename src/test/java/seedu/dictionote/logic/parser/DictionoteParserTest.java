@@ -15,17 +15,11 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dictionote.logic.commands.AddContactCommand;
+import seedu.dictionote.logic.commands.*;
 import seedu.dictionote.logic.commands.AddNoteCommand;
-import seedu.dictionote.logic.commands.ClearCommand;
 import seedu.dictionote.logic.commands.CloseCommand;
-import seedu.dictionote.logic.commands.DeleteContactCommand;
-import seedu.dictionote.logic.commands.EditCommand;
-import seedu.dictionote.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.dictionote.logic.commands.ExitCommand;
-import seedu.dictionote.logic.commands.FindCommand;
-import seedu.dictionote.logic.commands.HelpCommand;
-import seedu.dictionote.logic.commands.ListCommand;
+import seedu.dictionote.logic.commands.EditContactCommand;
+import seedu.dictionote.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.dictionote.logic.commands.OpenCommand;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.contact.Contact;
@@ -73,9 +67,9 @@ public class DictionoteParserTest {
     public void parseCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(contact).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditContactCommand command = (EditContactCommand) parser.parseCommand(EditContactCommand.COMMAND_WORD + " "
             + INDEX_FIRST_CONTACT.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_CONTACT, descriptor), command);
+        assertEquals(new EditContactCommand(INDEX_FIRST_CONTACT, descriptor), command);
     }
 
     @Test

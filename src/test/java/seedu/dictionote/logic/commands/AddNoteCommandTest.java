@@ -61,7 +61,7 @@ public class AddNoteCommandTest {
         // null -> returns false
         assertFalse(addNoteCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(addNoteCommand.equals(addOtherNoteCommand));
     }
 
@@ -181,7 +181,7 @@ public class AddNoteCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single contact.
      */
     private class ModelStubWithNote extends ModelStub {
         private final Note note;

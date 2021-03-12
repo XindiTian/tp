@@ -126,9 +126,9 @@ public class CommandTestUtil {
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
 <<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
-     * - the dicitonote book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the dicitonote book, filtered contact list and selected contact in {@code actualModel} remain unchanged
 =======
-     * - the dictionote book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the dictionote book, filtered contact list and selected contact in {@code actualModel} remain unchanged
 >>>>>>> 5707f1221a9e8b188be2a0aaadd1b48809f4ccfc:src/test/java/seedu/dictionote/logic/commands/CommandTestUtil.java
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
@@ -143,7 +143,7 @@ public class CommandTestUtil {
     }
     /**
 <<<<<<< HEAD:src/test/java/seedu/dicitonote/logic/commands/CommandTestUtil.java
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
      * {@code model}'s dicitonote book.
 =======
      * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
